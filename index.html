@@ -3,191 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kilani Intel | Sovereign Global Intelligence</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <title>KILANI INTEL | Hybrid Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Space+Grotesk:wght@300;500&display=swap');
-
         :root {
             --primary-gold: #D4AF37;
-            --deep-black: #050505;
-            --tech-blue: #0056b3;
-            --secure-green: #00ff41;
-            --alert-red: #ff4444;
-            --glass: rgba(255, 255, 255, 0.03);
-            --obsidian: #020406;
+            --dark-bg: #050505;
+            --card-bg: #111111;
+            --glass: rgba(212, 175, 55, 0.1);
+            --secure-green: #00ff88;
         }
 
-        body { 
-            background-color: var(--obsidian); 
-            color: #f0f0f0; 
-            font-family: 'Space Grotesk', sans-serif; 
-            margin: 0; 
+        body {
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
             overflow-x: hidden;
         }
 
-        /* Ticker Style */
-        .market-ticker {
-            background: #000;
+        nav {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-bottom: 1px solid var(--glass);
-            padding: 8px 0;
-            overflow: hidden;
-            white-space: nowrap;
-            font-family: 'Orbitron', monospace;
-            font-size: 0.75rem;
         }
 
-        .ticker-content {
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .market-ticker {
+            background: #000;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--glass);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            overflow: hidden;
+        }
+
+        .ticker-wrap {
             display: inline-block;
+            white-space: nowrap;
             animation: ticker 30s linear infinite;
         }
 
-        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        nav { 
-            padding: 1rem 5%; 
-            background: #000; 
-            border-bottom: 1px solid var(--glass); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-        }
-        
-        .logo {
-            color: var(--primary-gold);
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 800;
-            letter-spacing: 3px;
-            font-size: 1.5rem;
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
-        .master-grid { 
-            display: grid; 
-            grid-template-columns: 260px 1fr 300px; 
-            gap: 20px; 
-            padding: 20px; 
-            max-width: 1600px; 
-            margin: auto; 
+        .master-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 25px;
+            padding: 25px;
+            max-width: 1600px;
+            margin: auto;
         }
 
-        @media (max-width: 1100px) { .master-grid { grid-template-columns: 1fr; } }
-
-        .card { 
-            background: #111; 
-            padding: 20px; 
-            border-radius: 15px; 
-            border: 1px solid var(--glass); 
-            margin-bottom: 20px;
-        }
-
-        .metric-value { 
-            font-size: 1.8rem; 
-            font-weight: bold; 
-            color: var(--secure-green); 
-            font-family: 'Orbitron', monospace;
-        }
-
-        .btn-gold { 
-            background: var(--primary-gold); 
-            color: #000; 
-            border: none; 
-            padding: 12px; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            width: 100%; 
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .upload-zone {
-            border: 2px dashed var(--glass);
-            border-radius: 10px;
+        .card {
+            background: var(--card-bg);
             padding: 20px;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .chat-box { 
-            background: #080808; 
-            height: 400px; 
-            display: flex; 
-            flex-direction: column; 
-            border-radius: 15px;
+            border-radius: 12px;
             border: 1px solid var(--glass);
         }
 
-        #chat-messages { flex-grow: 1; padding: 15px; overflow-y: auto; font-size: 0.85rem; }
+        .metric-value {
+            font-size: 2.2rem;
+            color: var(--secure-green);
+            font-family: 'Orbitron', sans-serif;
+            margin: 15px 0;
+        }
+
+        .btn-gold {
+            background: var(--primary-gold);
+            color: #000;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            width: 100%;
+        }
+
+        #chat-container {
+            height: 350px;
+            overflow-y: auto;
+            background: #080808;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #222;
+        }
+
+        .chat-msg { margin-bottom: 10px; font-size: 0.9rem; }
+        .chat-msg b { color: var(--primary-gold); }
+
+        .input-group { display: flex; gap: 10px; }
+        input {
+            flex-grow: 1;
+            background: #1a1a1a;
+            border: 1px solid var(--glass);
+            color: #fff;
+            padding: 12px;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        @media (max-width: 900px) { .master-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <div class="market-ticker">
-        <div class="ticker-content" id="ticker">
-            <span style="color:var(--secure-green)">BTC/USD: $67,234 ▲</span> | 
-            <span style="color:var(--secure-green)">ETH/USD: $3,456 ▲</span> | 
-            <span style="color:var(--alert-red)">VIX: 18.5 ▼</span> |
-            <span style="color:var(--primary-gold)">GOLD: $2,345 ▲</span> |
-        </div>
+<div class="market-ticker">
+    <div class="ticker-wrap">
+        BTC/USD: $67,432.10 ▲ | ETH/USD: $3,481.50 ▲ | GOLD: $2,388.20 ▲ | VIX: 14.22 ▼ | NASDAQ: 18,203.40 ▲
     </div>
+</div>
 
-    <nav>
-        <div class="logo">KILANI INTEL</div>
-        <div id="auth-section">
-            <button class="btn-gold" style="width: auto; padding: 8px 15px;">SIGN IN</button>
+<nav>
+    <div class="logo">KILANI INTEL</div>
+    <button class="btn-gold" style="width:auto">System Access</button>
+</nav>
+
+<div class="master-grid">
+    <aside>
+        <div class="card">
+            <h4 style="color: var(--primary-gold); margin: 0;">Intelligence Score</h4>
+            <div class="metric-value" id="live-score">97.8%</div>
+            <p style="font-size: 0.8rem; color: #777;">AI Confidence Score</p>
+            <hr style="border:0; border-top:1px solid #222; margin:20px 0;">
+            <p style="font-size: 0.85rem;">Status: <span style="color: var(--secure-green)">Encrypted</span></p>
         </div>
-    </nav>
+    </aside>
 
-    <div class="master-grid">
-        <aside>
-            <div class="card">
-                <h4 style="color: var(--primary-gold); margin-top:0">Command Center</h4>
-                <p style="font-size: 0.8rem; color: #888;">System: Secure Line Active</p>
-                <button class="btn-gold">ENCRYPTED VAULT</button>
+    <main>
+        <div class="card">
+            <h3 style="margin-top:0; color: var(--primary-gold)">Secure Command Chat</h3>
+            <div id="chat-container"></div>
+            <div class="input-group">
+                <input type="text" id="user-input" placeholder="Type command...">
+                <button class="btn-gold" style="width:100px" onclick="sendMessage()">Execute</button>
             </div>
-        </aside>
+        </div>
+    </main>
+</div>
 
-        <main>
-            <div class="card" style="border-left: 4px solid var(--primary-gold);">
-                <h3 style="margin-top:0">Hybrid Analytics Engine</h3>
-                <div class="metric-value" id="confidence">97.4% Confidence</div>
-                <p style="color: #666; font-size: 0.9rem;">Scientific Calculation: Stochastic R-102 Loaded</p>
-            </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    const CONFIG = {
+        SUPABASE_URL: 'https://fqplhqwkayssrnnaralw.supabase.co',
+        SUPABASE_KEY: 'Sb_publishable_3isr2KLB80jo7f_d0-hh2w_qVtAbvEX'
+    };
 
-            <div class="card">
-                <h4>Deploy Intelligence</h4>
-                <div class="upload-zone" onclick="alert('EXIF Scrubber Ready. Upload for Sanitization.')">
-                    <p>Drop intelligence images here</p>
-                    <small style="color: var(--secure-green)">Automatic EXIF Data Scrubbing Active</small>
-                </div>
-            </div>
-        </main>
+    const supabase = supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_KEY);
 
-        <aside>
-            <div class="chat-box">
-                <div style="padding: 10px; border-bottom: 1px solid var(--glass); color: var(--primary-gold);">GLOBAL CHAT</div>
-                <div id="chat-messages">
-                    <p><b style="color: var(--secure-green)">[System]:</b> Line Encrypted.</p>
-                </div>
-                <div style="padding: 10px; border-top: 1px solid var(--glass);">
-                    <input type="text" placeholder="Secure message..." style="width: 100%; background: #000; border: 1px solid var(--glass); color: white; padding: 5px;">
-                </div>
-            </div>
-        </aside>
-    </div>
+    async function sendMessage() {
+        const input = document.getElementById('user-input');
+        const message = input.value.trim();
+        if(!message) return;
 
-    <script>
-        // Real-time confidence update
-        setInterval(() => {
-            const score = (96 + Math.random() * 3).toFixed(1);
-            document.getElementById('confidence').textContent = score + "% Confidence";
-        }, 4000);
+        const container = document.getElementById('chat-container');
+        container.innerHTML += `<div class="chat-msg"><b>USER:</b> ${message}</div>`;
+        
+        input.value = '';
+        container.scrollTop = container.scrollHeight;
 
-        // Simple Ticker Loop
-        const ticker = document.getElementById('ticker');
-        ticker.innerHTML += ticker.innerHTML; // Double content for smooth loop
-    </script>
+        try {
+            await supabase.from('messages').insert([{ content: message }]);
+        } catch (err) {
+            console.error('System Error:', err);
+        }
+    }
+
+    setInterval(() => {
+        const score = (96 + Math.random() * 3.5).toFixed(1);
+        document.getElementById('live-score').innerText = score + "%";
+    }, 4000);
+
+    document.getElementById('user-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+</script>
+
 </body>
 </html>
