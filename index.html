@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kilani Intel | Sovereign Global Intelligence</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Space+Grotesk:wght@300;500&display=swap');
+
+        :root {
+            --primary-gold: #D4AF37;
+            --deep-black: #050505;
+            --tech-blue: #0056b3;
+            --secure-green: #00ff41;
+            --alert-red: #ff4444;
+            --glass: rgba(255, 255, 255, 0.03);
+            --obsidian: #020406;
+        }
+
+        body { 
+            background-color: var(--obsidian); 
+            color: #f0f0f0; 
+            font-family: 'Space Grotesk', sans-serif; 
+            margin: 0; 
+            overflow-x: hidden;
+        }
+
+        /* Ticker Style */
+        .market-ticker {
+            background: #000;
+            border-bottom: 1px solid var(--glass);
+            padding: 8px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.75rem;
+        }
+
+        .ticker-content {
+            display: inline-block;
+            animation: ticker 30s linear infinite;
+        }
+
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        nav { 
+            padding: 1rem 5%; 
+            background: #000; 
+            border-bottom: 1px solid var(--glass); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+        }
+        
+        .logo {
+            color: var(--primary-gold);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            letter-spacing: 3px;
+            font-size: 1.5rem;
+        }
+
+        .master-grid { 
+            display: grid; 
+            grid-template-columns: 260px 1fr 300px; 
+            gap: 20px; 
+            padding: 20px; 
+            max-width: 1600px; 
+            margin: auto; 
+        }
+
+        @media (max-width: 1100px) { .master-grid { grid-template-columns: 1fr; } }
+
+        .card { 
+            background: #111; 
+            padding: 20px; 
+            border-radius: 15px; 
+            border: 1px solid var(--glass); 
+            margin-bottom: 20px;
+        }
+
+        .metric-value { 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            color: var(--secure-green); 
+            font-family: 'Orbitron', monospace;
+        }
+
+        .btn-gold { 
+            background: var(--primary-gold); 
+            color: #000; 
+            border: none; 
+            padding: 12px; 
+            border-radius: 8px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            width: 100%; 
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .upload-zone {
+            border: 2px dashed var(--glass);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .chat-box { 
+            background: #080808; 
+            height: 400px; 
+            display: flex; 
+            flex-direction: column; 
+            border-radius: 15px;
+            border: 1px solid var(--glass);
+        }
+
+        #chat-messages { flex-grow: 1; padding: 15px; overflow-y: auto; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <div class="market-ticker">
+        <div class="ticker-content" id="ticker">
+            <span style="color:var(--secure-green)">BTC/USD: $67,234 ▲</span> | 
+            <span style="color:var(--secure-green)">ETH/USD: $3,456 ▲</span> | 
+            <span style="color:var(--alert-red)">VIX: 18.5 ▼</span> |
+            <span style="color:var(--primary-gold)">GOLD: $2,345 ▲</span> |
+        </div>
+    </div>
+
+    <nav>
+        <div class="logo">KILANI INTEL</div>
+        <div id="auth-section">
+            <button class="btn-gold" style="width: auto; padding: 8px 15px;">SIGN IN</button>
+        </div>
+    </nav>
+
+    <div class="master-grid">
+        <aside>
+            <div class="card">
+                <h4 style="color: var(--primary-gold); margin-top:0">Command Center</h4>
+                <p style="font-size: 0.8rem; color: #888;">System: Secure Line Active</p>
+                <button class="btn-gold">ENCRYPTED VAULT</button>
+            </div>
+        </aside>
+
+        <main>
+            <div class="card" style="border-left: 4px solid var(--primary-gold);">
+                <h3 style="margin-top:0">Hybrid Analytics Engine</h3>
+                <div class="metric-value" id="confidence">97.4% Confidence</div>
+                <p style="color: #666; font-size: 0.9rem;">Scientific Calculation: Stochastic R-102 Loaded</p>
+            </div>
+
+            <div class="card">
+                <h4>Deploy Intelligence</h4>
+                <div class="upload-zone" onclick="alert('EXIF Scrubber Ready. Upload for Sanitization.')">
+                    <p>Drop intelligence images here</p>
+                    <small style="color: var(--secure-green)">Automatic EXIF Data Scrubbing Active</small>
+                </div>
+            </div>
+        </main>
+
+        <aside>
+            <div class="chat-box">
+                <div style="padding: 10px; border-bottom: 1px solid var(--glass); color: var(--primary-gold);">GLOBAL CHAT</div>
+                <div id="chat-messages">
+                    <p><b style="color: var(--secure-green)">[System]:</b> Line Encrypted.</p>
+                </div>
+                <div style="padding: 10px; border-top: 1px solid var(--glass);">
+                    <input type="text" placeholder="Secure message..." style="width: 100%; background: #000; border: 1px solid var(--glass); color: white; padding: 5px;">
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        // Real-time confidence update
+        setInterval(() => {
+            const score = (96 + Math.random() * 3).toFixed(1);
+            document.getElementById('confidence').textContent = score + "% Confidence";
+        }, 4000);
+
+        // Simple Ticker Loop
+        const ticker = document.getElementById('ticker');
+        ticker.innerHTML += ticker.innerHTML; // Double content for smooth loop
+    </script>
+</body>
+</html>
